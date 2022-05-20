@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Realtime communication with WebRTC</title>
+
+  <link rel="stylesheet" href="/css/main.css" />
+<style>
+video{
+  width: 700px;
+  height: 700px;
+}  
+li{
+  list-style: none;
+  display: inline-block;
+}
+h1{
+  text-align: center;
+}
+ul{
+  text-align: center;
+}
+div{
+  border: 1px solid black;
+}
+</style>
+</head>
+
+<body>
+
+  <ul>
+    <li><h1>RoomName : </h1></li>
+    <li><h1 id="h2"></h1></li>
+  </ul>
+ 
+
+    <ul>
+      <li>
+        <div>
+          <video id="localVideo" autoplay muted playsinline></video>
+          <h2>host</h2>
+        </div>
+      </li>
+      <li>
+        <div>
+          <video id="remoteVideo" autoplay muted playsinline></video>
+          <h2>client</h2>
+        </div>
+      </li>
+    </ul>
+  <!-- This file is automatically added/served when running "node index.js". -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+</script>
+<meta charset="UTF-8">
+<title>list화면</title>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+function myinit(){
+	axios({
+		url: 'ajax', // 통신할 웹문서
+		method: 'get' // 통신할 방식
+	}).then((res)=>{
+		arr = res.data.msg
+		//arr[0].e_id
+		str="";
+		console.log(arr[0].e_id)
+		
+		str += '<tr>';
+		str += '<td>사번</td>';
+		str += '<td>이름</td>';
+		str += '<td>성별</td>';
+		str += '<td>주소</td>';
+		str += '<td><input type="button" id="button1" value="추가" onclick="myadd();" ></td>';
+		str += '</tr>';
+ 		for(i =0; i<arr.length; i++){
+			//방법1
+ 			str += "<tr><td onclick='detail("+arr[i].e_id+");'>"+arr[i].e_id+"</td><td>"+arr[i].e_name+"</td><td>"+arr[i].sex+"</td><td>"+arr[i].addr+"</td></tr>";
+			//방법2
+			//str += `<tr><td onclick="detail('${arr[i].e_id}');">${arr[i].e_id}</td><td>${arr[i].e_name}</td><td>${arr[i].sex}</td><td>${arr[i].addr}</td><td><input type="button" id="button2" value="수정" onclick="myupdate('${arr[i].e_id}');" ></td><td><input type="button" id="button3" value="삭제" onclick="mydelete('${arr[i].e_id}');" ></td></tr>`;
+ 		
+ 		
+ 		} 
+		document.getElementById("test").innerHTML = str;
+	})
+	
+}
+
+
+function detail(e_id){
+	axios({
+		url: 'detail', // 통신할 웹문서
+		method: 'post', // 통신할 방식
+		data: { "e_id" : e_id }
+	}).then((res)=>{
+		str="";
+		console.log(res.data)
+		arr=res.data
+		
+		str += '<tr>';
+		str += '<td>사번</td>';
+		str += '<td>이름</td>';
+		str += '<td>성별</td>';
+		str += '<td>주소</td>';
+		str += '<td>수정/삭제</td>';
+		str += '<td><input type="button" id="button1" value="추가" onclick="myadd();" ></td>';
+		str += '</tr>';
+		str += `<tr><td>${arr.e_id}</td><td>${arr.e_name}</td><td>${arr.sex}</td><td>${arr.addr}</td><td><input type="button" id="button2" value="수정" onclick="myupdate('${arr.e_id}');" ></td><td><input type="button" id="button3" value="삭제" onclick="mydelete('${arr.e_id}');" ></td></tr>`;
+
+		document.getElementById("test2").innerHTML = str;
+	})
+} 
+
+function myadd(){
+	str='';
+	str += '<tr><td>사번</td><td><input type="text" name="e_id" id="e_id"></td></tr>';
+	str += '<tr><td>이름</td><td><input type="text" name="e_name" id="e_name"></td></tr>';
+	str += '<tr><td>성별</td><td><input type="text" name="sex" id="sex"></td></tr>';
+	str += '<tr><td>주소</td><td><input type="text" name="addr" id="addr"></td></tr>';
+	str += '<tr><td colspan="2"><input type="submit" value="확인" onclick="myadd2();"></td></tr>';	
+	document.getElementById("test").innerHTML = str;
+	
+
+}
+
+function mydelete(e_id){
+		var flag = confirm("한번 지워진 데이터는 복구 할수없습니다. 그래도 삭제하시겠습니까?")
+		if(!flag){
+			return;
+		}
+	 	axios({
+			url: 'delete', // 통신할 웹문서
+			method: 'post', // 통신할 방식
+			data: { "e_id":e_id }
+		}).then((res)=>{
+			//arr[0].e_id
+			str="";
+			console.log(res.data.cnt)
+			if(res.data.cnt >= 1){
+				alert("삭제성공!");	
+			}else{
+				alert("삭제실패!");	
+			}
+				
+			location.href="emp"
+		}) 
+		
+}
+
+function myupdate(e_id){
+	str='';
+	str += '<tr><td colspan="2">'+e_id+'회원의 정보를 수정합니다.</td></tr>';
+	str += '<tr><td>이름</td><td><input type="text" id="e_name_u"></td></tr>';
+	str += '<tr><td>성별</td><td><input type="text" id="sex_u"></td></tr>';
+	str += '<tr><td>주소</td><td><input type="text" id="addr_u"></td></tr>';
+	str += '<tr><td colspan="2"><input type="submit" value="확인" onclick="myupdate2('+e_id+');"></td></tr>';	
+	document.getElementById("test2").innerHTML = str;
+}
+
+function myupdate2(e_id){
+
+	e_name_u = document.getElementById("e_name_u").value
+	sex_u = document.getElementById("sex_u").value
+	addr_u = document.getElementById("addr_u").value
+	
+ 	axios({
+		url: 'update', // 통신할 웹문서
+		method: 'post', // 통신할 방식
+		data: { "e_id":e_id, "e_name":e_name_u, "sex":sex_u, "addr":addr_u}
+	}).then((res)=>{
+		//arr[0].e_id
+		str="";
+		console.log(res.data.cnt)
+		if(res.data.cnt >= 1){
+			alert("수정성공!");	
+		}else{
+			alert("수정실패!");	
+		}
+			
+		location.href="emp"
+	})  
+	
+	
+}
+
+
+function myadd2(){
+	
+	e_id = document.getElementById("e_id").value
+	e_name = document.getElementById("e_name").value
+	sex = document.getElementById("sex").value
+	addr = document.getElementById("addr").value
+ 	axios({
+		url: 'add', // 통신할 웹문서
+		method: 'post', // 통신할 방식
+		data: { "e_id":e_id, "e_name":e_name, "sex":sex, "addr":addr}
+	}).then((res)=>{
+		//arr[0].e_id
+		str="";
+		console.log(res.data.cnt)
+		if(res.data.cnt >= 1){
+			alert("입력성공!");	
+		}else{
+			alert("입력실패!");	
+		}
+			
+		location.href="emp"
+	})  
+	
+}
+
+</script>
+</head>
+<body onload="myinit()">
+<table border="1">
+<tbody id="test">
+</tbody>
+</table>
+
+<br>
+<br>
+
+<table border="1">
+<tbody id="test2">
+</tbody>
+</table>
+
+
+
+</body>
+</html>

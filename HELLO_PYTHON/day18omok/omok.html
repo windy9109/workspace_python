@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+    table{border-collapse: collapse;     width: 760px;}
+    td{ display: inline-table;}
+    tr{  height: 40px;
+    display: -webkit-box;}
+</style>
+<script type="text/javascript">
+game = true;
+var cnt = 0;
+var flag_wb = true;
+var arr2d=[
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0],
+    [0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0]
+]
+
+function omok(){
+	
+	
+	str="";
+	for(var i=0; i<19; i++){
+		str += '<tr>';
+			for(var j=0; j<19; j++){
+				str += '<td><img src="0.png" title="'+i+','+j+'" onclick="myclick(this);" ></td>';
+			}
+		str += '</tr>';
+	}
+	
+	document.querySelector("#my_tbody").innerHTML = str;
+	myrender();
+	
+}
+
+
+function myclick(obj){
+	if (game == false){return;}
+    var str_ij = obj.title;
+    arr_ij = str_ij.split(",")
+    i = parseInt(arr_ij[0])
+    j = parseInt(arr_ij[1])
+    
+    if(arr2d[i][j]>0){
+    	return;
+    }
+    var stone = -1;
+    
+    if(flag_wb){
+    	arr2d[i][j] = 1
+    	stone = 1;
+    }else{
+    	arr2d[i][j] = 2
+    	stone = 2;
+    }
+    
+    var up = checkUP(i,j,stone);
+    var dw = checkDOWN(i,j,stone);
+    var ri = checkRI(i,j,stone);
+    var le = checkLE(i,j,stone);
+    var leup = checkLEUP(i,j,stone);
+    var ridw = checkRIDW(i,j,stone);
+    var riup = checkRIUP(i,j,stone);
+    var ledw = checkLEDW(i,j,stone);
+    
+
+    a1 = up+dw
+    a2 = ri+le
+    a3 = leup+ridw
+    a4 = riup+ledw 
+    
+    console.log(up, dw, ri, le, leup, ridw, riup, ledw);
+        
+    myrender();
+    
+    flag_wb=! flag_wb;
+    
+    
+    
+    if (a1 == 4 || a2 == 4 || a3 == 4 || a4 == 4){
+        if (stone == 1){
+            setTimeout("alert('축하합니다 흰돌이 이겼습니다' )",1)
+        }
+        if (stone == 2){
+        	setTimeout("alert('축하합니다 검은돌이 이겼습니다' )",1)
+        }
+        game = false;
+    }
+    
+}
+
+
+
+function checkUP(i,j,stone){
+	
+	var cnt = 0;
+	try{
+		while(true){
+			i--;
+			if(arr2d[i][j] == stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}	
+	}catch(error){
+		return cnt;
+	}
+}
+
+
+
+
+function checkDOWN(i,j,stone){
+	var cnt = 0;
+	try{
+		while(true){
+			i++;
+			if(arr2d[i][j] == stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}	
+	}catch(error){
+		return cnt;
+	}
+}
+
+
+
+function checkRI(i,j,stone){
+	var cnt = 0;
+	try{
+		while(true){
+			j++;
+			if(arr2d[i][j] == stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}	
+	}catch(error){
+		return cnt;
+	}
+}
+
+
+function checkLE(i,j,stone){
+	var cnt = 0;
+	try{
+		while(true){
+			j--;
+			if(arr2d[i][j] == stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}	
+	}catch(error){
+		return cnt;
+	}
+}
+
+
+
+function checkLEUP(i,j,stone){
+	var cnt = 0;
+	try{
+		while(true){
+			i--;
+			j--;
+			if(arr2d[i][j] == stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}	
+	}catch(error){
+		return cnt;
+	}
+}
+
+
+
+
+function checkRIDW(i,j,stone){
+	var cnt = 0;
+	try{
+		while(true){
+			i++;
+			j++;
+			if(arr2d[i][j] == stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}	
+	}catch(error){
+		return cnt;
+	}
+}
+
+
+
+function checkRIUP(i,j,stone){
+	var cnt = 0;
+	try{
+		while(true){
+			i--;
+			j++;
+			if(arr2d[i][j] == stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}	
+	}catch(error){
+		return cnt;
+	}
+}
+
+
+
+
+function checkLEDW(i,j,stone){
+	var cnt = 0;
+	try{
+		while(true){
+			i++;
+			j--;
+			if(arr2d[i][j] == stone){
+				cnt++;
+			}else{
+				return cnt;
+			}
+		}	
+	}catch(error){
+		return cnt;
+	}
+}
+
+
+
+
+function myrender(){
+	var imgs = document.querySelectorAll("#my_tbody img");
+	console.log(imgs);
+    for(var i=0; i<19; i++){
+        for (var j=0; j<19; j++){
+            if (arr2d[i][j] == 0){
+            	imgs[i*19+j].src ="0.png";
+            }
+            if (arr2d[i][j] == 1){
+            	imgs[i*19+j].src ="1.png";
+            }
+            if (arr2d[i][j] == 2){
+            	imgs[i*19+j].src ="2.png";
+            }
+        }
+    }
+}
+
+function reset(){
+	var imgs = document.querySelectorAll("#my_tbody img");
+	    for(var i=0; i<19; i++){
+	        for (var j=0; j<19; j++){  
+	           imgs[i*19+j].src ="0.png";
+	           arr2d[i][j] = 0;
+	    }
+	    game = true;
+	}
+}
+
+
+</script>
+
+</head>
+<body onload = "omok();">
+
+	<table id= "table1">
+		<tbody id="my_tbody">
+		</tbody>
+	</table>
+
+	<input type="button" id="button1" onclick="reset()" value="초기화">
+</body>
+</html>

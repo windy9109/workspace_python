@@ -1,0 +1,62 @@
+<html>
+<head>
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <style>
+        body,#renderCanvas { width: 100%; height: 100%;}
+    </style>
+</head>
+<body>
+    <canvas id="renderCanvas"></canvas>
+    <script>
+		var cnt = 0;
+        const canvas = document.getElementById("renderCanvas");
+        const engine = new BABYLON.Engine(canvas, true);
+		var box;
+		var camera;
+
+        const createScene = function() {
+            const scene = new BABYLON.Scene(engine);
+            scene.clearColor = new BABYLON.Color3.Black;
+
+            const alpha =  3*Math.PI/2;
+            const beta = Math.PI/2;
+            const radius = 8;
+            const target = new BABYLON.Vector3(0, 0, 0);
+
+            camera = new BABYLON.ArcRotateCamera("Camera", alpha, beta, radius, target, scene);
+            camera.attachControl(canvas, true);
+
+            const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
+
+			var mat = new BABYLON.StandardMaterial("mat1", scene);
+			mat.alpha = 1.0;
+			mat.diffuseTexture = new BABYLON.Texture("0.png", scene);
+
+
+            box = BABYLON.MeshBuilder.CreateBox("box", {});
+            box.position.x = 0;
+            box.position.y = 0;
+            box.material = mat;
+
+            return scene;
+        };
+
+        const sceneToRender = createScene();
+		
+        engine.runRenderLoop(function(){
+			//box.position.z+=0.1;
+			box.rotation.z += 0.01;
+			if(cnt==0){
+				console.log("camera",camera.position.x,camera.position.y,camera.position.z);
+			}
+            sceneToRender.render();
+			cnt++;
+        });
+    </script>
+</body>
+</html>
+
+-1.4695761589768238e-15 4.898587196589413e-16 -8
+
+
+

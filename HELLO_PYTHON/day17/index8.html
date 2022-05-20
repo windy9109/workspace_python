@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <style>
+    	input[type]{
+    		width: 100%;
+    	}
+    	td{
+    		width: 50px;
+    		border: 1px solid darkgray;
+    	}
+    </style>
+    <script type="text/javascript">
+    	function click0(){    	
+			
+    		var qw = document.querySelector("#ita").value
+    		var qw2 = document.querySelector("#itb").value
+    		q = parseInt(qw)
+    		w = parseInt(qw2)
+    		str="";
+    		for(i=q; i<w+1; i++){
+    			for(j=0; j<i; j++){
+    				str +="*"
+    			}
+    			str += "\n"
+    		}
+    		
+    		document.querySelector("#ta").value = str
+    		
+   		}
+    </script>
+  </head>
+  <body>
+    <table>
+    	<tr>
+    		<td>첫별수:</td>
+    		<td><input type="text" id="ita"></td>
+    	</tr>
+    	 <tr>
+    		<td>끝별수:</td>
+    		<td><input type="text" id="itb"></td>
+    	</tr>
+    	 <tr>
+    		<td colspan="2">
+    			<input type="button" id="btn" value="click" onclick="click0();">
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="2">
+    			<textarea rows="10" cols="10" id="ta"></textarea>
+    		</td>
+    	</tr>
+    	
+    	
+    </table>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <style>
+    	input[type]{
+    		width: 100%;
+    	}
+    	td{
+    		width: 50px;
+    		border: 1px solid darkgray;
+    	}
+    </style>
+    <script type="text/javascript">
+    	function click0(){
+    	
+    	
+    	arr=[]
+    	arr6=[]
+    	for(i=1; i<46; i++){
+    		arr.push(i)
+    	}
+    	
+    	while(true){
+    		random = parseInt(Math.random()*45)
+    		if(arr[random] > 0){
+    			arr6.push(arr[random]);
+    			arr[random] = -1;
+    		}
+    		
+    		if(arr6.length >= 6){
+    			break;
+    		}
+    		
+    	}
+    	
+    	console.log(arr6)
+    	
+    	for(i=0; i<6; i++){
+    		document.querySelectorAll(".mytd")[i].innerHTML = arr6[i];
+    	}
+    	
+
+   	}
+    </script>
+  </head>
+  <body>
+    <table>
+    	<tr>
+    		<td class="mytd">&nbsp;</td>
+    		<td class="mytd">&nbsp;</td>
+    		<td class="mytd">&nbsp;</td>
+    		<td class="mytd">&nbsp;</td>
+    		<td class="mytd">&nbsp;</td>
+    		<td class="mytd">&nbsp;</td>
+    	</tr>
+    	 <tr>
+    		<td colspan="6">
+    			<input type="button" id="btn" value="click" onclick="click0();">
+    		</td>
+    	</tr>
+    </table>
+  </body>
+</html>

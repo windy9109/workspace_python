@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <style>
+    	input[type=text]{
+    		width: 50px;
+    	}
+    </style>
+    <script type="text/javascript">
+    	function click0(){
+    	var qw = document.getElementById("itMine").value  
+    	var qw2 = document.getElementById("itCom").value
+    	var qw3 = document.getElementById("itResult").value
+    	result = Math.random()
+    	
+    	if(result >=0.5){
+    		document.getElementById("itCom").value = "홀" 
+    	}else{
+    		document.getElementById("itCom").value = "짝" 
+
+    	}
+    	
+    	if(qw == qw2){
+    		document.getElementById("itResult").value = "당신이 이겼습니다." 
+    	}else{
+    		document.getElementById("itResult").value = "당신이 졌습니다." 
+    	}
+    	
+
+   	}
+    </script>
+  </head>
+  <body>
+    나:<input type="text" id="itMine">
+    컴:<input type="text" id="itCom">
+    결과:<input type="text" id="itResult">
+    <input type="button" value="=" onclick="click0();">
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+function button1_click() {
+	location.href="add";
+}
+function update0(e_id) {
+	location.href="update?e_id="+e_id;
+}
+
+function delete0(e_id) {
+	var flag = confirm("한번 지워진 데이터는 복구 할수없습니다. 그래도 삭제하시겠습니까?")
+	if(!flag){
+		return;
+	}
+	location.href="delete_act?e_id="+e_id;
+	
+}
+</script>
+<meta charset="UTF-8">
+<title>list화면</title>
+</head>
+<body>
+<table border="1">
+	<tr>
+		<td>사번</td>
+		<td>이름</td>
+		<td>성별</td>
+		<td>주소</td>
+		<td>수정/삭제</td>
+		<td><input type="button" id="button1" value="추가" onclick="button1_click();" ></td>
+	</tr>
+
+		{% for e in emps %} <!-- jinja2 -->
+	<tr>
+		<td>{{e.e_id}}</td>
+		<td id="e_name">{{e.e_name}}</td>
+		<td id="sex">{{e.sex}}</td>
+		<td id="addr">{{e.addr}}</td>
+		<td><input type="button" value="수정" onclick="update0('{{e.e_id}}');"></td>
+		<td><input type="submit" value="삭제" onclick="delete0('{{e.e_id}}');"></td>
+		</td>
+	</tr>
+		{% endfor %}
+</table>
+</body>
+</html>

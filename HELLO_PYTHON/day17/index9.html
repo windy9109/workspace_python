@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <style>
+    	input[type]{
+    		width: 100%;
+    	}
+    	td{
+    		width: 50px;
+    		border: 1px solid darkgray;
+    	}
+    </style>
+    <script type="text/javascript">
+    str = ""	
+    	function click0(a1){    	
+			
+    	
+			str += a1.value
+			
+			document.querySelector("#mydisp_input").value = str
+		
+    		
+   		}
+    function click1(){
+    	alert(document.querySelector("#mydisp_input").value)
+    }
+    </script>
+  </head>
+  <body>
+    <table>
+    	<tr>
+    		<td colspan="3" class="mydisp">
+    			<input type="text" value="" id="mydisp_input">
+    		</td>
+    	</tr>
+    	<tr>
+    		<td class="mytd">
+    			<input type="button" value="1" onclick="click0(this);">
+    		</td>
+    		<td class="mytd">
+    			<input type="button" value="2" onclick="click0(this);">
+    		</td>
+    		<td class="mytd">
+    			<input type="button" value="3" onclick="click0(this);">
+    		</td>
+    	</tr>
+    	<tr>
+    		<td class="mytd">
+    			<input type="button" value="4" onclick="click0(this);">
+    		</td>
+    		<td class="mytd">
+    			<input type="button" value="5" onclick="click0(this);">
+    		</td>
+    		<td class="mytd">
+    			<input type="button" value="6" onclick="click0(this);">
+    		</td>
+    	</tr>
+    	<tr>
+    		<td class="mytd">
+    			<input type="button" value="7" onclick="click0(this);">
+    		</td>
+    		<td class="mytd">
+    			<input type="button" value="8" onclick="click0(this);">
+    		</td>
+    		<td class="mytd">
+    			<input type="button" value="9" onclick="click0(this);">
+    		</td>
+    	</tr>
+    	<tr>
+    		<td class="mytd">
+    			<input type="button" value="0" onclick="click0(this);">
+    		</td>
+    		<td colspan="2">
+    			<input type="button" id="btn" value="click" onclick="click1();">
+    		</td>
+    	</tr>
+
+    	
+    </table>
+  </body>
+</html>

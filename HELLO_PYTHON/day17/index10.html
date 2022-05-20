@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <style>
+    	input[type=text]{
+    		width: 50px;
+    	}
+    </style>
+    <script type="text/javascript">
+    
+   		 function enterkey(e) {
+   			 if(e.key == "Enter"){
+   				click0()
+   			 }
+			
+		}
+
+
+
+    	function click0(){
+    	var qw = document.getElementById("itMine")
+    	var qw2 = document.getElementById("itCom")
+    	var qw3 = document.getElementById("itResult")
+    	result = Math.random()
+    	
+    	if(result >=0.33){
+    		qw2.value   = "가위" 
+    	}else if(result >=0.66){
+    		qw2.value = "바위" 
+    	}else{
+    		qw2.value = "보" 
+    	}
+    	
+    	if(qw.value == qw2.value){
+    		qw3.value = "비겼습니다." 
+    	}else if(qw.value == "가위" && qw2.value== "보" || qw.value == "바위" && qw2.value == "가위" || qw.value == "보" && qw2.value== "바위"){
+    		qw3.value = "당신이 이겼습니다." 
+    	}else{
+    		qw3.value = "당신이 졌습니다." 
+    	}
+    	
+
+   	}
+    </script>
+  </head>
+  <body>
+    나:<input type="text" id="itMine" onkeydown="enterkey(event);">
+    컴:<input type="text" id="itCom">
+    결과:<input type="text" id="itResult">
+    <input type="button" value="확인" onclick="click0();">
+  </body>
+</html>

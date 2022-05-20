@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <style>
+    	input[type=text]{
+    		width: 50px;
+    	}
+    </style>
+    <script type="text/javascript">
+    	function click0(){
+    	var qw = document.getElementById("idDan").value  
+    	
+    	str="";
+    	
+    	for(var i=1; i<10; i++){
+    		str += `${qw}*${i}=${parseInt(qw)*i}\n`
+    	}
+    	
+    	document.getElementById("ta").value = str
+
+   	}
+    </script>
+  </head>
+  <body>
+    <table>
+    	<tr>
+    		<td>단수:</td>
+    		<td><input type="text" id="idDan"></td>
+    	</tr>
+    	 <tr>
+    		<td colspan="2">
+    			<input type="button" id="ib" value="출력하기" onclick="click0();">
+    		</td>
+    	</tr>
+    	 <tr>
+    		<td colspan="2">
+    			<textarea id="ta" rows="10" cols="10"></textarea>
+    		</td>
+    	</tr>
+    </table>
+  </body>
+</html>

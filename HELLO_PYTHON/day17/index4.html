@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <style>
+    	input[type=text]{
+    		width: 50px;
+    	}
+    </style>
+    <script type="text/javascript">
+    	function click0(){
+    	var qw = document.getElementById("ita").value  
+    	var qw2 = document.getElementById("itb").value
+    	tt = parseInt(qw)+parseInt(qw2);
+    	
+    	document.getElementById("itc").value = tt
+    	
+    	}
+    </script>
+  </head>
+  <body>
+    <input type="text" id="ita">
+    +
+    <input type="text" id="itb">
+    <input type="button" value="=" onclick="click0();">
+    <input type="text" id="itc">
+  </body>
+</html>

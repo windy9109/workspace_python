@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?language javascript?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="332.0" prefWidth="354.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+ 
+<!--   <fx:script> 
+	function doAction(event){ 
+		var str = btn.getText(); 
+		str = "Good evening!!"; 
+		lbl.setText(str); }
+	</fx:script>  -->
+
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="373.0" prefWidth="551.0" VBox.vgrow="ALWAYS">
+         <children>
+            <TextField id="tf" layoutX="81.0" layoutY="24.0" prefHeight="31.0" prefWidth="177.0" />
+            <Button id="btn1" layoutX="81.0" layoutY="65.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="51.0" text="1" />
+            <Button id="btn2" layoutX="143.0" layoutY="65.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="51.0" text="2" />
+            <Button id="btn3" layoutX="206.0" layoutY="65.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="51.0" text="3" />
+            <Button id="btn4" layoutX="81.0" layoutY="107.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="51.0" text="4" />
+            <Button id="btn5" layoutX="143.0" layoutY="107.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="51.0" text="5" />
+            <Button id="btn6" layoutX="206.0" layoutY="107.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="51.0" text="6" />
+            <Button id="btn7" layoutX="81.0" layoutY="147.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="51.0" text="7" />
+            <Button id="btn8" layoutX="143.0" layoutY="147.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="51.0" text="8" />
+            <Button id="btn9" layoutX="206.0" layoutY="147.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="51.0" text="9" />
+            <Button id="btn0" layoutX="81.0" layoutY="189.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="51.0" text="0" />
+            <Button id="btn_call" layoutX="146.0" layoutY="189.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="111.0" text="call" />
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>
